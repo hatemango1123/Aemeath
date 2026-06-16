@@ -1,326 +1,427 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hanseob Kim | DXP Lab</title>
-    <!-- 폰트어썸 (아이콘) 무료 CDN -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- 구글 폰트 (Pretendard 대체용 널리 쓰이는 Noto Sans KR) -->
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
-    
-    <style>
-        :root {
-            /* 건양대학교 메인 그린 컬러 톤 적용 */
-            --primary-color: #005a3c; 
-            --primary-light: #007a52;
-            --primary-dark: #003d29;
-            --text-color: #333333;
-            --text-light: #666666;
-            --bg-color: #f4f7f6;
-            --white: #ffffff;
-            --transition: all 0.3s ease;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>하태현 | 건양대학교 국방XR학과</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
 
-        body {
-            font-family: 'Noto Sans KR', sans-serif;
-            line-height: 1.6;
-            color: var(--text-color);
-            background-color: var(--bg-color);
-            padding-top: 70px; /* 네비게이션 바 높이만큼 여백 */
-        }
+    :root {
+      --white:    #ffffff;
+      --bg:       #fdf4f7;
+      --bg2:      #fff0f5;
+      --pink:     #e8457a;
+      --pink-lt:  #f472a0;
+      --pink-pale:#fce4ee;
+      --pink-mid: #f9c8da;
+      --text:     #2a1520;
+      --text2:    #7a4a5e;
+      --border:   rgba(232, 69, 122, 0.18);
+      --card:     #ffffff;
+      --transition: all 0.25s ease;
+    }
 
-        /* Top Navigation Bar */
-        .navbar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            background-color: var(--white);
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem 5%;
-            z-index: 1000;
-        }
+    html { scroll-behavior: smooth; }
 
-        .nav-logo {
-            font-size: 1.2rem;
-            font-weight: 700;
-            color: var(--primary-color);
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
+    body {
+      font-family: 'Noto Sans KR', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      padding-top: 64px;
+    }
 
-        .nav-links {
-            list-style: none;
-            display: flex;
-            gap: 20px;
-        }
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; width: 100%;
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 0 6%; height: 64px; z-index: 999;
+      box-shadow: 0 1px 16px rgba(232,69,122,0.07);
+    }
+    .nav-brand {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.1rem; font-weight: 700;
+      color: var(--pink); letter-spacing: 0.04em; text-decoration: none;
+    }
+    .nav-links { list-style: none; display: flex; gap: 6px; }
+    .nav-links a {
+      text-decoration: none; color: var(--text2);
+      font-size: 0.88rem; padding: 6px 16px; border-radius: 20px;
+      transition: var(--transition);
+    }
+    .nav-links a:hover, .nav-links a.active {
+      color: var(--pink);
+      background: var(--pink-pale);
+    }
 
-        .nav-links a {
-            text-decoration: none;
-            color: var(--text-color);
-            font-weight: 500;
-            padding: 8px 16px;
-            border-radius: 20px;
-            transition: var(--transition);
-        }
+    /* ── HERO ── */
+    .hero {
+      min-height: 90vh;
+      display: flex; align-items: center; justify-content: center;
+      text-align: center; padding: 5rem 2rem;
+      position: relative; overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      width: 560px; height: 560px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(232,69,122,0.12) 0%, transparent 70%);
+      top: 50%; left: 50%;
+      transform: translate(-50%, -55%);
+      pointer-events: none;
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      width: 320px; height: 320px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(244,114,160,0.10) 0%, transparent 70%);
+      bottom: 10%; right: 12%;
+      pointer-events: none;
+    }
+    .hero-content { position: relative; z-index: 1; max-width: 680px; }
 
-        .nav-links a:hover {
-            background-color: var(--bg-color);
-            color: var(--primary-color);
-        }
+    .hero-badge {
+      display: inline-block;
+      border: 1.5px solid var(--border);
+      color: var(--pink); font-size: 0.78rem;
+      padding: 5px 18px; border-radius: 20px;
+      margin-bottom: 2rem; letter-spacing: 0.08em;
+      background: var(--pink-pale);
+      font-family: 'Space Grotesk', sans-serif;
+    }
+    .hero-name {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(3.2rem, 9vw, 6rem);
+      font-weight: 700; line-height: 1.0;
+      letter-spacing: -0.02em; margin-bottom: 1rem;
+      color: var(--text);
+    }
+    .hero-name .ko {
+      display: block;
+      font-size: clamp(1.6rem, 4vw, 2.2rem);
+      font-weight: 400; color: var(--text2);
+      margin-bottom: 0.3rem;
+      font-family: 'Noto Sans KR', sans-serif;
+      letter-spacing: 0.1em;
+    }
+    .hero-tagline {
+      font-size: 1.05rem; color: var(--text2);
+      margin-bottom: 2.5rem;
+      letter-spacing: 0.02em;
+    }
+    .hero-tagline em { color: var(--pink); font-style: normal; font-weight: 500; }
 
-        .nav-links a.active {
-            background-color: var(--primary-color);
-            color: var(--white);
-        }
+    .hero-dept {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-size: 0.85rem; color: var(--text2);
+      border-top: 1px solid var(--border);
+      padding-top: 1.4rem;
+    }
+    .hero-dept .dot {
+      width: 7px; height: 7px; border-radius: 50%;
+      background: var(--pink); display: inline-block; flex-shrink: 0;
+    }
 
-        /* Hero Section */
-        .hero {
-            background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
-            color: var(--white);
-            padding: 5rem 2rem;
-            text-align: center;
-        }
+    /* ── SECTION COMMON ── */
+    .section-wrap {
+      max-width: 1060px;
+      margin: 0 auto;
+      padding: 5.5rem 6%;
+    }
+    .sec-label {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.72rem; letter-spacing: 0.14em;
+      color: var(--pink); text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+    .sec-title {
+      font-size: 1.9rem; font-weight: 700;
+      margin-bottom: 2.8rem; line-height: 1.2;
+      color: var(--text);
+    }
 
-        .hero h1 {
-            font-size: 2.8rem;
-            margin-bottom: 1rem;
-        }
+    /* ── ABOUT ── */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2.5rem;
+      align-items: start;
+    }
+    .about-text { color: var(--text2); font-size: 1rem; line-height: 1.95; }
+    .about-text strong { color: var(--text); }
+    .about-text p + p { margin-top: 1rem; }
 
-        .hero .role {
-            font-size: 1.2rem;
-            opacity: 0.9;
-            margin-bottom: 2rem;
-        }
+    .stat-cards {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+    .stat-card {
+      background: var(--card);
+      border: 1.5px solid var(--pink-mid);
+      border-radius: 14px;
+      padding: 1.3rem 1.4rem;
+      transition: var(--transition);
+    }
+    .stat-card:hover {
+      border-color: var(--pink);
+      box-shadow: 0 4px 20px rgba(232,69,122,0.12);
+      transform: translateY(-3px);
+    }
+    .stat-card .num {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.9rem; font-weight: 700; color: var(--pink);
+    }
+    .stat-card .lbl {
+      font-size: 0.78rem; color: var(--text2); margin-top: 4px;
+    }
 
-        .container {
-            max-width: 1100px;
-            margin: -3rem auto 3rem;
-            padding: 0 20px;
-            position: relative;
-        }
+    /* ── SKILLS ── */
+    .skills-bg {
+      background: var(--bg2);
+      border-top: 1px solid var(--pink-mid);
+      border-bottom: 1px solid var(--pink-mid);
+    }
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.4rem;
+    }
+    .skill-group {
+      background: var(--card);
+      border: 1.5px solid var(--pink-mid);
+      border-radius: 14px;
+      padding: 1.4rem;
+      transition: var(--transition);
+    }
+    .skill-group:hover {
+      border-color: var(--pink);
+      box-shadow: 0 4px 20px rgba(232,69,122,0.10);
+    }
+    .skill-group h4 {
+      color: var(--pink);
+      font-size: 0.8rem; letter-spacing: 0.1em;
+      margin-bottom: 1rem;
+      font-family: 'Space Grotesk', sans-serif;
+      text-transform: uppercase;
+    }
+    .skill-tags { display: flex; flex-wrap: wrap; gap: 7px; }
+    .skill-tag {
+      background: var(--pink-pale);
+      border: 1px solid var(--pink-mid);
+      color: var(--pink);
+      font-size: 0.8rem;
+      padding: 4px 12px; border-radius: 8px;
+      font-weight: 500;
+    }
+    .skills-note {
+      margin-top: 1.2rem;
+      font-size: 0.8rem;
+      color: var(--text2);
+      font-style: italic;
+    }
 
-        /* About Section */
-        .about-card {
-            background: var(--white);
-            border-radius: 12px;
-            padding: 2.5rem;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-            margin-bottom: 3rem;
-            text-align: center;
-        }
+    /* ── CONTACT ── */
+    .contact-wrap {
+      background: var(--card);
+      border: 1.5px solid var(--pink-mid);
+      border-radius: 20px;
+      padding: 3.5rem;
+      text-align: center;
+      box-shadow: 0 4px 40px rgba(232,69,122,0.08);
+    }
+    .contact-wrap h3 {
+      font-size: 1.5rem; font-weight: 700;
+      color: var(--text); margin-bottom: 0.8rem;
+    }
+    .contact-wrap p {
+      color: var(--text2); font-size: 0.95rem; margin-bottom: 2rem;
+    }
+    .contact-btns {
+      display: flex; gap: 1rem;
+      justify-content: center; flex-wrap: wrap;
+    }
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 11px 28px; border-radius: 30px;
+      text-decoration: none; font-size: 0.9rem; font-weight: 500;
+      transition: var(--transition); cursor: pointer; border: none;
+    }
+    .btn-fill {
+      background: var(--pink); color: #fff;
+    }
+    .btn-fill:hover {
+      background: var(--pink-lt);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 16px rgba(232,69,122,0.3);
+    }
+    .btn-outline {
+      border: 1.5px solid var(--pink-mid);
+      color: var(--text2); background: transparent;
+    }
+    .btn-outline:hover {
+      border-color: var(--pink);
+      color: var(--pink);
+      background: var(--pink-pale);
+      transform: translateY(-2px);
+    }
 
-        .about-card h2 {
-            color: var(--primary-color);
-            margin-bottom: 1rem;
-        }
+    /* ── FOOTER ── */
+    footer {
+      text-align: center;
+      padding: 2.5rem;
+      color: var(--text2);
+      font-size: 0.82rem;
+      border-top: 1px solid var(--pink-mid);
+      letter-spacing: 0.04em;
+    }
+    footer span { color: var(--pink); font-weight: 500; }
 
-        /* Cards Layout (CSS Grid) */
-        .section-title {
-            text-align: center;
-            margin-bottom: 2rem;
-            color: var(--text-color);
-        }
-
-        .card-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-bottom: 3rem;
-        }
-
-        .card {
-            background: var(--white);
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            transition: var(--transition);
-        }
-
-        .card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
-        }
-
-        .card-img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-        }
-
-        .card-content {
-            padding: 1.5rem;
-        }
-
-        .card-content i {
-            color: var(--primary-color);
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .card-content h3 {
-            margin-bottom: 0.8rem;
-            color: var(--text-color);
-        }
-
-        .card-content p {
-            color: var(--text-light);
-            font-size: 0.95rem;
-        }
-
-        /* Contact Section */
-        .contact-section {
-            text-align: center;
-            background: var(--white);
-            padding: 3rem;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-        }
-
-        .contact-links {
-            display: flex;
-            justify-content: center;
-            gap: 1.5rem;
-            margin-top: 1.5rem;
-        }
-
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 10px 24px;
-            border-radius: 30px;
-            text-decoration: none;
-            font-weight: 500;
-            transition: var(--transition);
-        }
-
-        .btn-outline {
-            border: 2px solid var(--primary-color);
-            color: var(--primary-color);
-        }
-
-        .btn-outline:hover {
-            background: var(--primary-color);
-            color: var(--white);
-        }
-
-        .btn-fill {
-            background: var(--primary-color);
-            color: var(--white);
-        }
-
-        .btn-fill:hover {
-            background: var(--primary-dark);
-        }
-
-        footer {
-            text-align: center;
-            padding: 2rem 0;
-            color: var(--text-light);
-            font-size: 0.9rem;
-            border-top: 1px solid #e2e8f0;
-        }
-    </style>
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      .about-grid { grid-template-columns: 1fr; }
+      .section-wrap { padding: 4rem 5%; }
+      .contact-wrap { padding: 2.5rem 1.5rem; }
+      .hero-name { font-size: clamp(2.6rem, 10vw, 4rem); }
+    }
+  </style>
 </head>
 <body>
 
-<!-- Top Navigation -->
-<nav class="navbar">
-    <a href="#" class="nav-logo">
-        <i class="fa-solid fa-vr-cardboard"></i> DXP Lab
-    </a>
-    <ul class="nav-links">
-        <li><a href="#" class="active"><i class="fa-solid fa-wand-magic-sparkles"></i> 현재 페이지 (Modern)</a></li>
-        <!-- 이전 페이지 파일명을 old.html 혹은 previous.html 로 맞추어 학생들에게 링크 이동을 시연하시면 됩니다 -->
-        <li><a href="index_initial.html"><i class="fa-solid fa-clock-rotate-left"></i> 이전 페이지 (Basic)</a></li>
-    </ul>
+<!-- ── NAV ── -->
+<nav>
+  <a href="#" class="nav-brand">HTH.dev</a>
+  <ul class="nav-links">
+    <li><a href="#about" class="active">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
 </nav>
 
-<!-- Hero Section -->
+<!-- ── HERO ── -->
 <header class="hero">
-    <h1>Hanseob Kim</h1>
-    <p class="role">Professor & Director of DXP Lab</p>
+  <div class="hero-content">
+    <div class="hero-badge">건양대학교 국방XR학과</div>
+    <h1 class="hero-name">
+      <span class="ko">하태현</span>
+      Ha Taehyeon
+    </h1>
+    <p class="hero-tagline">
+      "공식적으로는 <em>백수</em>입니다."
+    </p>
+    <div class="hero-dept">
+      <span class="dot"></span>
+      Konyang University &nbsp;·&nbsp; Dept. of National Defense XR
+      <span class="dot"></span>
+    </div>
+  </div>
 </header>
 
-<main class="container">
-    <!-- About Section -->
-    <section class="about-card">
-        <h2><i class="fa-solid fa-user-tie"></i> About Me</h2>
-        <p>
-            인간과 컴퓨터의 상호작용(HCI)을 연구하며, 가상현실(VR) 및 증강현실(AR) 환경에서의 
-            사용자 경험 개선과 <strong>사이버멀미(Cybersickness) 저감 기술</strong>에 집중하고 있습니다. 
-            데이터 전처리 및 분석 역량을 바탕으로 국방(National Defense) 및 의료 등 다양한 도메인을 위한 초실감형 몰입 기술을 탐구합니다.
-        </p>
-    </section>
-
-    <h2 class="section-title">Research Interests</h2>
-    
-    <!-- Cards Section -->
-    <section class="card-grid">
-        <!-- Card 1 -->
-        <article class="card">
-            <img src="https://images.unsplash.com/photo-1622979135225-d2ba269cf1ac?auto=format&fit=crop&w=600&q=80" alt="VR Headset" class="card-img">
-            <div class="card-content">
-                <i class="fa-solid fa-shield-halved"></i>
-                <h3>XR for National Defense</h3>
-                <p>국방 훈련을 위한 초실감형 메타버스 인터페이스 연구 및 인공지능 기반 인간 검증 데이터셋 구축.</p>
-            </div>
-        </article>
-
-        <!-- Card 2 -->
-        <article class="card">
-            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=600&q=80" alt="Data Analysis" class="card-content-img card-img">
-            <div class="card-content">
-                <i class="fa-solid fa-eye"></i>
-                <h3>Cybersickness Mitigation</h3>
-                <p>시선 추적(Eye-tracking) 및 시각/햅틱 피드백을 활용한 자율주행 및 VR 환경 내 사이버멀미 분석 및 저감 솔루션.</p>
-            </div>
-        </article>
-
-        <!-- Card 3 -->
-        <article class="card">
-            <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=600&q=80" alt="Medical Technology" class="card-img">
-            <div class="card-content">
-                <i class="fa-solid fa-bed-pulse"></i>
-                <h3>Digital Therapeutics</h3>
-                <p>병상 환자(Bedridden Patients) 및 교통약자를 위한 VR 기반 치료/편의 기술 및 상호작용 인터페이스 설계.</p>
-            </div>
-        </article>
-    </section>
-
-    <!-- Contact Section -->
-    <section class="contact-section">
-        <h2>Let's Connect</h2>
-        <p style="margin-top: 10px; color: var(--text-light);">연구 협력이나 DXP 연구실에 관심이 있으시다면 언제든 연락주세요.</p>
-        <div class="contact-links">
-            <a href="mailto:example@korea.ac.kr" class="btn btn-fill">
-                <i class="fa-solid fa-envelope"></i> Email Me
-            </a>
-            <a href="https://github.com" class="btn btn-outline" target="_blank">
-                <i class="fa-brands fa-github"></i> GitHub
-            </a>
-            <a href="#" class="btn btn-outline">
-                <i class="fa-solid fa-globe"></i> Lab Website
-            </a>
+<!-- ── ABOUT ── -->
+<section id="about">
+  <div class="section-wrap">
+    <p class="sec-label">About</p>
+    <h2 class="sec-title">저는 이런 사람입니다</h2>
+    <div class="about-grid">
+      <div class="about-text">
+        <p>건양대학교 <strong>국방XR학과</strong>에 재학 중입니다. XR(Extended Reality) 기술과 국방 분야의 접점을 탐구하며, 실감형 콘텐츠와 인터랙티브 인터페이스에 관심을 갖고 있습니다.</p>
+        <p>아직 완성된 개발자는 아니지만, <strong>코드 한 줄씩 쌓아가는 중</strong>입니다. 이 포트폴리오도 현재진행형입니다.</p>
+      </div>
+      <div class="stat-cards">
+        <div class="stat-card">
+          <div class="num">XR</div>
+          <div class="lbl">전공 핵심 기술</div>
         </div>
-    </section>
-</main>
+        <div class="stat-card">
+          <div class="num">국방</div>
+          <div class="lbl">응용 도메인</div>
+        </div>
+        <div class="stat-card">
+          <div class="num">0 →</div>
+          <div class="lbl">성장 중인 프로젝트</div>
+        </div>
+        <div class="stat-card">
+          <div class="num">∞</div>
+          <div class="lbl">배울 것들</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
+<!-- ── SKILLS ── -->
+<div class="skills-bg">
+  <section id="skills">
+    <div class="section-wrap">
+      <p class="sec-label">Skills</p>
+      <h2 class="sec-title">기술 스택</h2>
+      <div class="skills-grid">
+        <div class="skill-group">
+          <h4>Languages</h4>
+          <div class="skill-tags">
+            <span class="skill-tag">Python</span>
+            <span class="skill-tag">C++</span>
+            <span class="skill-tag">HTML/CSS</span>
+            <span class="skill-tag">JavaScript</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <h4>XR / 3D</h4>
+          <div class="skill-tags">
+            <span class="skill-tag">Unity</span>
+            <span class="skill-tag">Unreal Engine</span>
+            <span class="skill-tag">Blender</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <h4>Tools</h4>
+          <div class="skill-tags">
+            <span class="skill-tag">Git</span>
+            <span class="skill-tag">VS Code</span>
+            <span class="skill-tag">Figma</span>
+          </div>
+        </div>
+      </div>
+      <p class="skills-note">* 실제 사용하는 기술 스택으로 수정하세요.</p>
+    </div>
+  </section>
+</div>
+
+<!-- ── CONTACT ── -->
+<section id="contact">
+  <div class="section-wrap">
+    <p class="sec-label">Contact</p>
+    <h2 class="sec-title">연락하기</h2>
+    <div class="contact-wrap">
+      <h3>Let's Connect</h3>
+      <p>궁금한 점이 있거나 협업 제안이 있다면 편하게 연락주세요.</p>
+      <div class="contact-btns">
+        <a href="mailto:your@email.com" class="btn btn-fill">
+          <i class="fa-solid fa-envelope"></i> Email
+        </a>
+        <a href="https://github.com" target="_blank" class="btn btn-outline">
+          <i class="fa-brands fa-github"></i> GitHub
+        </a>
+        <a href="#" class="btn btn-outline">
+          <i class="fa-solid fa-file-lines"></i> 이력서
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
 <footer>
-    <p>&copy; 2026 Hanseob Kim & DXP Lab. All rights reserved.</p>
+  &copy; 2026 <span>Ha Taehyeon</span> · Konyang Univ. National Defense XR Dept.
 </footer>
 
 </body>
